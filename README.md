@@ -10,159 +10,82 @@ The application uses state-of-the-art NLP models to achieve high accuracy across
 
 ## Features
 
-The application offers several key capabilities:
-
-**Entity Detection**: Automatically identifies multiple entity types including persons, organizations, locations, dates, monetary amounts, facilities, products, and events.
-
-**Visual Interface**: Provides color-coded highlighting of detected entities directly in the text, making it easy to scan and understand the content at a glance.
-
-**Interactive Analysis**: Users can click on entities in the sidebar to highlight all occurrences throughout the text, enabling quick analysis of entity distribution and frequency.
-
-**Sample Texts**: Includes pre-loaded example texts across different domains such as business, news, sports, research, and startup scenarios to demonstrate capabilities.
-
-**Real-time Processing**: Analyzes text instantly as it is entered or pasted, providing immediate feedback and results.
-
-**Export Options**: Allows users to download detected entities in CSV format for further analysis or record-keeping.
+The application can identify multiple entity types including persons, organizations, locations, dates, monetary amounts, facilities, products, and events.
+It also analyzes text instantly as it is entered or pasted,and give immidiate feedback and result.
 
 ## Technology Stack
 
 ### Backend
-
-The backend is built with Python and uses the following technologies:
-
 - FastAPI for creating a modern, high-performance API
 - spaCy or Hugging Face Transformers for NLP and entity recognition
 - Uvicorn as the ASGI server
 - Python 3.10 or higher
 
 ### Frontend
-
-The frontend uses modern JavaScript technologies:
-
 - React 18 for building the user interface
 - Vite as the build tool and development server
 - Tailwind CSS for styling
 - Axios for making API requests
 
 ## Prerequisites
-
-Before setting up the project, ensure you have the following installed:
-
-- Python 3.10 or higher
-- Node.js 18 or higher
-- pip (Python package manager)
-- npm (Node package manager)
-- Git
+Before setting up the project, ensure you have installed python, nodejs, npm, git.
 
 ## Installation and Setup
 
 ### Clone the Repository
-
-First, clone the repository to your local machine:
+run following commands in bash:
 ```bash
-git clone https://github.com/Nishtha031105/ner-ml-project.git
+git clone https://github.com/YOUR_USER_NAME/ner-ml-project.git
 cd ner-ml-project
 ```
 
 ### Backend Setup
+create a folder name backend in your main repo.
 
-Navigate to the backend directory and set up the Python environment:
 ```bash
 cd backend
 ```
-
-Create a virtual environment to isolate project dependencies:
+To create virtual environment, run:
 ```bash
 python -m venv venv
 ```
-
-Activate the virtual environment:
-
-On Windows:
-```bash
-venv\Scripts\activate
-```
-
-On macOS and Linux:
 ```bash
 source venv/bin/activate
 ```
-
-Install the required Python packages:
 ```bash
 pip install -r requirements.txt
 ```
-
-Download the NER model. You have two options:
-
-For faster performance with smaller model size:
+Download any one NER Model:
+smaller version:
 ```bash
 python -m spacy download en_core_web_sm
 ```
-
-For better accuracy with larger model size (recommended):
+larger version:
 ```bash
 python -m spacy download en_core_web_trf
 ```
-
-Start the backend server:
+start backend server on prot 8000:
 ```bash
 uvicorn app.main:app --reload --port 8000
 ```
+backend is running at:  http://localhost:8000
 
-The backend API will now be running at http://localhost:8000
-
-You can verify it's working by visiting http://localhost:8000/health in your browser.
+verify server status at: http://localhost:8000/health in your browser.
 
 ### Frontend Setup
 
-Open a new terminal window and navigate to the frontend directory:
+create a folder name backend in your main repo.
 ```bash
 cd frontend
 ```
-
-Install the required Node.js packages:
 ```bash
 npm install
 ```
-
-Start the development server:
 ```bash
 npm run dev
 ```
 
-The frontend application will now be running at http://localhost:5173
-
-Open your browser and navigate to http://localhost:5173 to use the application.
-
-## Project Structure
-```
-NER(ML Project)/
-├── backend/
-│   ├── app/
-│   │   ├── main.py                 # Main FastAPI application
-│   │   ├── model.py                # NER model wrapper
-│   │   ├── transformer_model.py    # Transformer model implementation
-│   │   └── schemas.py              # Pydantic data models
-│   ├── requirements.txt            # Python dependencies
-│   ├── train_model.py             # Script for training custom models
-│   └── download_dataset.py        # Dataset download utilities
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Editor.jsx         # Text input component
-│   │   │   ├── HighlightedText.jsx    # Display component with highlights
-│   │   │   └── EntityList.jsx     # Sidebar entity list
-│   │   ├── App.jsx                # Main application component
-│   │   ├── api.js                 # API communication functions
-│   │   └── main.jsx               # Application entry point
-│   ├── package.json               # Node.js dependencies
-│   └── vite.config.js             # Vite configuration
-├── .gitignore
-└── README.md
-```
-
-## Usage
+Application  will be running at: http://localhost:5173
 
 ### Basic Usage
 
@@ -176,12 +99,9 @@ NER(ML Project)/
 
 5. Click on any entity in the sidebar to highlight all occurrences of that entity in the text.
 
-6. Use the "Export as CSV" button to download the detected entities for external use.
-
 ### Entity Types
 
-The system can identify the following types of entities:
-
+Followig types of entities can be detected using this model:
 - **PERSON**: Names of people, including both real and fictional characters
 - **ORG**: Organizations such as companies, government agencies, and institutions
 - **GPE**: Geopolitical entities like countries, cities, and states
@@ -211,17 +131,15 @@ The project includes scripts for downloading common NER datasets:
 cd backend
 python download_dataset.py
 ```
-
-This will prompt you to choose from available datasets such as CoNLL-2003 or WNUT-17.
+This will prompt you to choose from available datasets such as CoNLL-2003 or WNUT-17 or ONTO.
 
 ### Training Process
-
-After downloading a dataset, train your model:
+To train model:
 ```bash
 python train_model.py
 ```
 
-The script will guide you through choosing training parameters and will save the trained model to the `custom_ner_model` directory.
+Trained model will be saved to the `custom_ner_model` directory.
 
 ### Using Your Custom Model
 
